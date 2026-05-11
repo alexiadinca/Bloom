@@ -1,0 +1,39 @@
+<section class="hero">
+  <p class="eyebrow">Bloom Student Kits</p>
+  <h1>Student survival kits for everyday chaos.</h1>
+  <p class="hero-text">
+    Curated kits designed for study days, deadlines, rainy mornings and weekend resets.
+  </p>
+</section>
+
+<section class="products-section">
+  <div class="section-header">
+    <h2>Shop the kits</h2>
+    <p>Choose a kit that fits your student routine.</p>
+  </div>
+
+  <p *ngIf="isLoading" class="state-message">Loading products...</p>
+
+  <p *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </p>
+
+  <div *ngIf="!isLoading && !errorMessage" class="products-grid">
+    <article class="product-card" *ngFor="let product of products">
+      <div class="image-wrapper">
+        <img [src]="product.imageUrl" [alt]="product.name">
+      </div>
+
+      <div class="card-content">
+        <span class="category">{{ product.category }}</span>
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+
+        <div class="card-footer">
+          <strong>${{ product.price }}</strong>
+          <button type="button">Add to Cart</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
