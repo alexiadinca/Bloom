@@ -1,0 +1,61 @@
+<section class="cart-page">
+  <div class="cart-header">
+    <p class="eyebrow">Your Bloom cart</p>
+    <h1>Review your selected kits.</h1>
+    <p>Adjust quantities before continuing to checkout.</p>
+  </div>
+
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <h2>Your cart is empty.</h2>
+      <p>Explore the Bloom kits and add your favorites.</p>
+      <a routerLink="/products">Back to products</a>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="cart-layout">
+      <div class="cart-items">
+        <article class="cart-item" *ngFor="let item of cartItems">
+          <img [src]="item.product.imageUrl" [alt]="item.product.name">
+
+          <div class="item-details">
+            <span>{{ item.product.category }}</span>
+            <h3>{{ item.product.name }}</h3>
+            <p>${{ item.product.price }}</p>
+          </div>
+
+          <div class="quantity-controls">
+            <button type="button" (click)="decreaseQuantity(item.product.id)">-</button>
+            <strong>{{ item.quantity }}</strong>
+            <button type="button" (click)="increaseQuantity(item.product.id)">+</button>
+          </div>
+
+          <div class="item-total">
+            <strong>${{ item.product.price * item.quantity | number:'1.2-2' }}</strong>
+            <button type="button" class="remove-btn" (click)="removeFromCart(item.product.id)">
+              Remove
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <aside class="summary">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong>${{ cartTotal$ | async | number:'1.2-2' }}</strong>
+        </div>
+
+        <p class="summary-note">
+          Final total will be recalculated securely by the backend during checkout.
+        </p>
+
+        <a routerLink="/checkout" class="checkout-btn">Continue to checkout</a>
+
+        <button type="button" class="clear-btn" (click)="clearCart()">
+          Clear cart
+        </button>
+      </aside>
+    </div>
+  </ng-container>
+</section>
