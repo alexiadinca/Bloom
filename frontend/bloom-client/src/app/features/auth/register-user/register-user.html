@@ -1,0 +1,62 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <p class="eyebrow">Create account</p>
+    <h1>Join Bloom.</h1>
+    <p class="subtitle">Create an account to continue with your order.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="two-columns">
+        <div>
+          <label>
+            First name
+            <input type="text" formControlName="firstName" placeholder="Alexia">
+          </label>
+
+          <small *ngIf="registerForm.controls.firstName.touched && registerForm.controls.firstName.invalid">
+            First name is required.
+          </small>
+        </div>
+
+        <div>
+          <label>
+            Last name
+            <input type="text" formControlName="lastName" placeholder="Test">
+          </label>
+
+          <small *ngIf="registerForm.controls.lastName.touched && registerForm.controls.lastName.invalid">
+            Last name is required.
+          </small>
+        </div>
+      </div>
+
+      <label>
+        Email
+        <input type="email" formControlName="email" placeholder="alexia@test.com">
+      </label>
+
+      <small *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+        Please enter a valid email address.
+      </small>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" placeholder="Minimum 6 characters">
+      </label>
+
+      <small *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+        Password must have at least 6 characters.
+      </small>
+
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Creating account...' : 'Register' }}
+      </button>
+    </form>
+
+    <p class="switch-link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</section>

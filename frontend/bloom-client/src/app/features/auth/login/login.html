@@ -1,0 +1,38 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <p class="eyebrow">Welcome back</p>
+    <h1>Log in to Bloom.</h1>
+    <p class="subtitle">Access your cart and continue your order.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label>
+        Email
+        <input type="email" formControlName="email" placeholder="alexia@test.com">
+      </label>
+
+      <small *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+        Please enter a valid email address.
+      </small>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" placeholder="Password123">
+      </label>
+
+      <small *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+        Password is required.
+      </small>
+
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <p class="switch-link">
+      New to Bloom?
+      <a routerLink="/register">Create an account</a>
+    </p>
+  </div>
+</section>

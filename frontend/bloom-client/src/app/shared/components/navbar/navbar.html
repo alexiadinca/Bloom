@@ -9,7 +9,14 @@
       <span class="cart-badge">{{ cartCount$ | async }}</span>
     </a>
 
-    <a routerLink="/login">Login</a>
-    <a routerLink="/register" class="register-link">Register</a>
+    <ng-container *ngIf="currentUser$ | async as user; else guestLinks">
+      <span class="user-name">Hi, {{ user.firstName }}</span>
+      <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+    </ng-container>
+
+    <ng-template #guestLinks>
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register" class="register-link">Register</a>
+    </ng-template>
   </div>
 </nav>

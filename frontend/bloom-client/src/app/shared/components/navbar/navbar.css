@@ -66,6 +66,25 @@
   color: white !important;
 }
 
+.user-name {
+  color: #7a6e67;
+  font-weight: 700;
+}
+
+.logout-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  background: #2f2825;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #4e3f38;
+}
+
 @media (max-width: 700px) {
   .navbar {
     align-items: flex-start;
