@@ -1,0 +1,49 @@
+<section class="success-page">
+  <div class="success-card" *ngIf="order; else noOrder">
+    <p class="eyebrow">Order placed</p>
+    <h1>Thank you for your order.</h1>
+
+    <p class="message">
+      Your Bloom order was placed successfully.
+    </p>
+
+    <div class="order-info">
+      <div>
+        <span>Order ID</span>
+        <strong>#{{ order.orderId }}</strong>
+      </div>
+
+      <div>
+        <span>Total paid</span>
+        <strong>${{ order.totalPrice | number:'1.2-2' }}</strong>
+      </div>
+
+      <div>
+        <span>Shipping address</span>
+        <strong>{{ order.shippingAddress }}</strong>
+      </div>
+    </div>
+
+    <h2>Items</h2>
+
+    <div class="items">
+      <article *ngFor="let item of order.items">
+        <span>{{ item.quantity }} × {{ item.productName }}</span>
+        <strong>${{ item.lineTotal | number:'1.2-2' }}</strong>
+      </article>
+    </div>
+
+    <a routerLink="/products">Back to products</a>
+  </div>
+
+  <ng-template #noOrder>
+    <div class="success-card">
+      <p class="eyebrow">No order found</p>
+      <h1>No recent order to display.</h1>
+      <p class="message">
+        Place an order first to see the confirmation page.
+      </p>
+      <a routerLink="/products">Back to products</a>
+    </div>
+  </ng-template>
+</section>

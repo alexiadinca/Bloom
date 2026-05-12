@@ -1,0 +1,162 @@
+<section class="checkout-page">
+  <div class="checkout-header">
+    <p class="eyebrow">Bloom checkout</p>
+    <h1>Complete your order.</h1>
+    <p>Enter your shipping details and place your order securely.</p>
+  </div>
+
+  <ng-container *ngIf="cartItems$ | async as cartItems">
+    <div *ngIf="cartItems.length === 0" class="empty-checkout">
+      <h2>Your cart is empty.</h2>
+      <p>Add at least one kit before continuing to checkout.</p>
+      <a routerLink="/products">Back to products</a>
+    </div>
+
+    <div *ngIf="cartItems.length > 0" class="checkout-layout">
+      <form class="checkout-form" [formGroup]="checkoutForm" (ngSubmit)="placeOrder()">
+        <h2>Shipping details</h2>
+
+        <label>
+          Full name
+          <input
+            type="text"
+            formControlName="fullName"
+            placeholder="First and Last Name"
+          >
+        </label>
+
+        <small *ngIf="checkoutForm.controls.fullName.touched && checkoutForm.controls.fullName.invalid">
+          Full name is required.
+        </small>
+
+        <label>
+          Street address
+          <input
+            type="text"
+            formControlName="streetAddress"
+            placeholder="Str. Exemple, nr. 123"
+          >
+        </label>
+
+        <small *ngIf="checkoutForm.controls.streetAddress.touched && checkoutForm.controls.streetAddress.invalid">
+          Street address is required.
+        </small>
+
+        <div class="two-columns">
+          <div>
+            <label>
+              City
+              <input
+                type="text"
+                formControlName="city"
+                placeholder="Craiova"
+              >
+            </label>
+
+            <small *ngIf="checkoutForm.controls.city.touched && checkoutForm.controls.city.invalid">
+              City is required.
+            </small>
+          </div>
+
+          <div>
+            <label>
+              County / State
+              <input
+                type="text"
+                formControlName="county"
+                placeholder="Dolj"
+              >
+            </label>
+
+            <small *ngIf="checkoutForm.controls.county.touched && checkoutForm.controls.county.invalid">
+              County or state is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="two-columns">
+          <div>
+            <label>
+              Postal code
+              <input
+                type="text"
+                formControlName="postalCode"
+                placeholder="200000"
+              >
+            </label>
+
+            <small *ngIf="checkoutForm.controls.postalCode.touched && checkoutForm.controls.postalCode.invalid">
+              Postal code is required.
+            </small>
+          </div>
+
+          <div>
+            <label>
+              Country
+              <input
+                type="text"
+                formControlName="country"
+                placeholder="Romania"
+              >
+            </label>
+
+            <small *ngIf="checkoutForm.controls.country.touched && checkoutForm.controls.country.invalid">
+              Country is required.
+            </small>
+          </div>
+        </div>
+
+        <label>
+          Phone number
+          <input
+            type="text"
+            formControlName="phoneNumber"
+            placeholder="+40 700 000 000"
+          >
+        </label>
+
+        <small *ngIf="checkoutForm.controls.phoneNumber.touched && checkoutForm.controls.phoneNumber.invalid">
+          Phone number is required.
+        </small>
+
+        <p *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </p>
+
+        <button type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Placing order...' : 'Place Order' }}
+        </button>
+      </form>
+
+      <aside class="checkout-summary">
+        <h2>Order Summary</h2>
+
+        <div class="summary-items">
+          <article *ngFor="let item of cartItems" class="summary-item">
+            <img [src]="item.product.imageUrl" [alt]="item.product.name">
+
+            <div>
+              <h3>{{ item.product.name }}</h3>
+              <p>
+                {{ item.quantity }} × ${{ item.product.price | number:'1.2-2' }}
+              </p>
+            </div>
+
+            <strong>
+              ${{ item.product.price * item.quantity | number:'1.2-2' }}
+            </strong>
+          </article>
+        </div>
+
+        <div class="summary-total">
+          <span>Frontend estimated subtotal</span>
+          <strong>${{ cartTotal$ | async | number:'1.2-2' }}</strong>
+        </div>
+
+        <p class="summary-note">
+          The final total is recalculated by the backend using the product prices stored in the database.
+        </p>
+      </aside>
+    </div>
+  </ng-container>
+</section>
