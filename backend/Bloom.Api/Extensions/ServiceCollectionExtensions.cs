@@ -22,6 +22,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAuthService, AuthService>();
 
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IOrderService, OrderService>();  
+
         services.AddSingleton<PasswordHasher>();
         services.AddSingleton<JwtTokenGenerator>();
 
@@ -44,13 +47,13 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
-    {
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+   public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
+{
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
 
-        return services;
-    }
+    return services;
+}
 
     public static IServiceCollection AddJwtAuthentication(
         this IServiceCollection services,
