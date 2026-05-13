@@ -630,9 +630,7 @@ The request does not include a trusted total price. The backend calculates the t
 
 ## Submission Notes
 
-The project should be submitted through a Git repository on the `main` or `master` branch.
-
-The repository should include:
+The repository includes:
 
 - the complete backend project;
 - the complete Angular frontend project;
