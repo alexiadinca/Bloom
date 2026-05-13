@@ -596,7 +596,7 @@ Then follow this flow:
 
 ```json
 {
-  "shippingAddress": "Name: Alexia Popescu, Street: Strada Exemplu 10, City: Craiova, County/State: Dolj, Postal Code: 200000, Country: Romania, Phone: +40 700 000 000",
+  "shippingAddress": "Name: Alexia Dinca, Street: Strada Exemplu 10, City: Craiova, County/State: Dolj, Postal Code: 200000, Country: Romania, Phone: +40 700 000 000",
   "items": [
     {
       "productId": 1,
