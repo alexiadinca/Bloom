@@ -307,9 +307,65 @@ After running the script, the database `BloomDb` should be created and populated
 
 ---
 
-## Backend Setup
+## Running the Project with VS Code
 
-Open a terminal and navigate to the backend API project:
+The repository includes VS Code launch and task configurations for running the full-stack application more easily.
+
+The configuration files are located in:
+
+```text
+.vscode/launch.json
+.vscode/tasks.json
+```
+
+### Full Stack Launch
+
+If you are using Visual Studio Code:
+
+1. Open the project root folder in VS Code.
+2. Go to the **Run and Debug** tab.
+3. Select the **Full Stack** configuration.
+4. Click **Run**.
+
+This configuration starts the backend and frontend through VS Code.
+
+The backend is configured to run on:
+
+```text
+https://localhost:5037
+```
+
+Swagger opens automatically at:
+
+```text
+https://localhost:5037/swagger/
+```
+
+The frontend is started using the configured VS Code task. Before running the Angular development server, the task runs:
+
+```powershell
+npm install
+```
+
+Then it runs:
+
+```powershell
+npm run start
+```
+
+which starts the Angular application.
+
+The frontend should be available at:
+
+```text
+http://localhost:4200
+```
+
+---
+
+## Manual Backend Setup
+
+If you prefer to run the backend manually, open a terminal and navigate to the backend API project:
 
 ```powershell
 cd backend/Bloom.Api
@@ -330,13 +386,13 @@ dotnet run
 The backend should start on:
 
 ```text
-http://localhost:5037
+https://localhost:5037
 ```
 
 Swagger is available at:
 
 ```text
-http://localhost:5037/swagger
+https://localhost:5037/swagger/
 ```
 
 ---
@@ -368,9 +424,9 @@ Example configuration:
 
 ---
 
-## Frontend Setup
+## Manual Frontend Setup
 
-Open a second terminal and navigate to the Angular project:
+If you prefer to run the frontend manually, open a second terminal and navigate to the Angular project:
 
 ```powershell
 cd frontend/bloom-client
@@ -383,6 +439,12 @@ npm install
 ```
 
 Run the Angular frontend:
+
+```powershell
+npm run start
+```
+
+or:
 
 ```powershell
 ng serve
@@ -536,39 +598,50 @@ database/create-database.sql
 
 using SQL Server Management Studio.
 
-### 2. Start the Backend
+Alternatively, restore the provided database backup file if available:
+
+```text
+database/BloomDb.bak
+```
+
+### 2. Run the Application
+
+The recommended way is to use the included VS Code launch configuration:
+
+1. Open the project root folder in Visual Studio Code.
+2. Go to **Run and Debug**.
+3. Select **Full Stack**.
+4. Click **Run**.
+
+This starts the backend and frontend.
+
+Backend Swagger:
+
+```text
+https://localhost:5037/swagger/
+```
+
+Frontend:
+
+```text
+http://localhost:4200
+```
+
+### 3. Manual Run Alternative
+
+Backend:
 
 ```powershell
 cd backend/Bloom.Api
 dotnet run
 ```
 
-Backend URL:
-
-```text
-http://localhost:5037
-```
-
-Swagger URL:
-
-```text
-http://localhost:5037/swagger
-```
-
-### 3. Start the Frontend
-
-In a second terminal:
+Frontend:
 
 ```powershell
 cd frontend/bloom-client
 npm install
-ng serve
-```
-
-Frontend URL:
-
-```text
-http://localhost:4200
+npm run start
 ```
 
 ### 4. Test the Application
