@@ -7,7 +7,10 @@ import { CartItem } from '../../shared/models/cart-item.model';
   providedIn: 'root'
 })
 export class CartService {
-  private readonly cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
+  private readonly cartStorageKey = 'bloom_cart';
+  private readonly cartItemsSubject = new BehaviorSubject<CartItem[]>(
+    this.getStoredCartItems()
+  );
 
   cartItems$ = this.cartItemsSubject.asObservable();
 
@@ -43,7 +46,7 @@ export class CartService {
           : item
       );
 
-      this.cartItemsSubject.next(updatedItems);
+      this.updateCart(updatedItems);
       return;
     }
 
@@ -52,7 +55,7 @@ export class CartService {
       quantity: 1
     };
 
-    this.cartItemsSubject.next([...currentItems, newItem]);
+    this.updateCart([...currentItems, newItem]);
   }
 
   increaseQuantity(productId: number): void {
@@ -62,7 +65,7 @@ export class CartService {
         : item
     );
 
-    this.cartItemsSubject.next(updatedItems);
+    this.updateCart(updatedItems);
   }
 
   decreaseQuantity(productId: number): void {
@@ -74,7 +77,7 @@ export class CartService {
       )
       .filter(item => item.quantity > 0);
 
-    this.cartItemsSubject.next(updatedItems);
+    this.updateCart(updatedItems);
   }
 
   removeFromCart(productId: number): void {
@@ -82,14 +85,34 @@ export class CartService {
       item => item.product.id !== productId
     );
 
-    this.cartItemsSubject.next(updatedItems);
+    this.updateCart(updatedItems);
   }
 
   clearCart(): void {
-    this.cartItemsSubject.next([]);
+    this.updateCart([]);
   }
 
   getCurrentItems(): CartItem[] {
     return this.cartItemsSubject.value;
+  }
+
+  private updateCart(items: CartItem[]): void {
+    localStorage.setItem(this.cartStorageKey, JSON.stringify(items));
+    this.cartItemsSubject.next(items);
+  }
+
+  private getStoredCartItems(): CartItem[] {
+    const storedCartItems = localStorage.getItem(this.cartStorageKey);
+
+    if (!storedCartItems) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(storedCartItems) as CartItem[];
+    } catch {
+      localStorage.removeItem(this.cartStorageKey);
+      return [];
+    }
   }
 }
