@@ -1,0 +1,28 @@
+<article class="cart-item">
+  <img [src]="item.product.imageUrl" [alt]="item.product.name">
+
+  <div class="item-details">
+    <span>{{ item.product.category }}</span>
+    <h3>{{ item.product.name }}</h3>
+    <p class="stock-text">{{ item.product.stockQuantity }} left in stock</p>
+    <p>${{ item.product.price }}</p>
+  </div>
+
+  <div class="quantity-controls">
+    <button type="button" (click)="decreaseQuantity()">-</button>
+    <strong>{{ item.quantity }}</strong>
+    <button
+      type="button"
+      [disabled]="reachedStockLimit"
+      (click)="increaseQuantity()">
+      +
+    </button>
+  </div>
+
+  <div class="item-total">
+    <strong>${{ item.product.price * item.quantity | number:'1.2-2' }}</strong>
+    <button type="button" class="remove-btn" (click)="removeFromCart()">
+      Remove
+    </button>
+  </div>
+</article>

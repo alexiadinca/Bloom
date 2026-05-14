@@ -22,6 +22,10 @@ export class CartService {
   );
 
   addToCart(product: Product): void {
+    if (product.stockQuantity <= 0) {
+      return;
+    }
+
     const currentItems = this.cartItemsSubject.value;
 
     const existingItem = currentItems.find(
@@ -29,6 +33,10 @@ export class CartService {
     );
 
     if (existingItem) {
+      if (existingItem.quantity >= product.stockQuantity) {
+        return;
+      }
+
       const updatedItems = currentItems.map(item =>
         item.product.id === product.id
           ? { ...item, quantity: item.quantity + 1 }
@@ -49,7 +57,7 @@ export class CartService {
 
   increaseQuantity(productId: number): void {
     const updatedItems = this.cartItemsSubject.value.map(item =>
-      item.product.id === productId
+      item.product.id === productId && item.quantity < item.product.stockQuantity
         ? { ...item, quantity: item.quantity + 1 }
         : item
     );

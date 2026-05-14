@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../core/services/product.service';
 import { CartService } from '../../../core/services/cart.service';
 import { Product } from '../../../shared/models/product.model';
+import { ProductCardComponent } from '../../../shared/components/product-card-component/product-card-component';
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule],
+  imports: [CommonModule, ProductCardComponent],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })

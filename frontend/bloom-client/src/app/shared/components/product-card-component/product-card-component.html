@@ -1,0 +1,17 @@
+<article class="product-card">
+  <div class="image-wrapper">
+    <img [src]="product.imageUrl" [alt]="product.name">
+  </div>
+
+  <div class="card-content">
+    <span class="category">{{ product.category }}</span>
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <p class="stock-text">{{ product.stockQuantity }} left in stock</p>
+
+    <div class="card-footer">
+      <strong>${{ product.price }}</strong>
+      <button type="button" (click)="addToCart()">Add to Cart</button>
+    </div>
+  </div>
+</article>

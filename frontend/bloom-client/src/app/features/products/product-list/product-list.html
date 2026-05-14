@@ -19,21 +19,10 @@
   </p>
 
   <div *ngIf="!isLoading && !errorMessage" class="products-grid">
-    <article class="product-card" *ngFor="let product of products">
-      <div class="image-wrapper">
-        <img [src]="product.imageUrl" [alt]="product.name">
-      </div>
-
-      <div class="card-content">
-        <span class="category">{{ product.category }}</span>
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
-
-        <div class="card-footer">
-          <strong>${{ product.price }}</strong>
-          <button type="button" (click)="addToCart(product)">Add to Cart</button>
-        </div>
-      </div>
-    </article>
+    <app-product-card-component
+      *ngFor="let product of products"
+      [product]="product"
+      (addProduct)="addToCart($event)">
+    </app-product-card-component>
   </div>
 </section>

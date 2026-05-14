@@ -14,28 +14,13 @@
 
     <div *ngIf="cartItems.length > 0" class="cart-layout">
       <div class="cart-items">
-        <article class="cart-item" *ngFor="let item of cartItems">
-          <img [src]="item.product.imageUrl" [alt]="item.product.name">
-
-          <div class="item-details">
-            <span>{{ item.product.category }}</span>
-            <h3>{{ item.product.name }}</h3>
-            <p>${{ item.product.price }}</p>
-          </div>
-
-          <div class="quantity-controls">
-            <button type="button" (click)="decreaseQuantity(item.product.id)">-</button>
-            <strong>{{ item.quantity }}</strong>
-            <button type="button" (click)="increaseQuantity(item.product.id)">+</button>
-          </div>
-
-          <div class="item-total">
-            <strong>${{ item.product.price * item.quantity | number:'1.2-2' }}</strong>
-            <button type="button" class="remove-btn" (click)="removeFromCart(item.product.id)">
-              Remove
-            </button>
-          </div>
-        </article>
+        <app-cart-item-component
+          *ngFor="let item of cartItems"
+          [item]="item"
+          (increase)="increaseQuantity($event)"
+          (decrease)="decreaseQuantity($event)"
+          (remove)="removeFromCart($event)">
+        </app-cart-item-component>
       </div>
 
       <aside class="summary">
