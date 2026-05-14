@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { Home } from './features/home/home';
 import { ProductList } from './features/products/product-list/product-list';
 import { Cart } from './features/cart/cart';
 import { Login } from './features/auth/login/login';
@@ -7,11 +8,7 @@ import { Checkout } from './features/checkout/checkout';
 import { OrderSuccess } from './features/order-success/order-success';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'products',
-    pathMatch: 'full'
-  },
+  { path: '', component: Home },
   {
     path: 'products',
     component: ProductList

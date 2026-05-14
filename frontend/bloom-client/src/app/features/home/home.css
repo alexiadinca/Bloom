@@ -1,0 +1,145 @@
+.home-page {
+  min-height: calc(100vh - 76px);
+  background: #fbf8f5;
+  color: #2f2825;
+}
+
+.hero {
+  min-height: 640px;
+  padding: 72px 8%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) 420px;
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.78rem;
+  color: #a98274;
+  margin: 0 0 18px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.7rem, 6vw, 5.4rem);
+  line-height: 1.02;
+  font-weight: 500;
+  margin: 0 0 24px;
+  max-width: 880px;
+}
+
+.hero-description {
+  max-width: 680px;
+  color: #6f625c;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0 0 34px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.primary-btn {
+  background: #2f2825;
+  color: white;
+}
+
+.secondary-btn {
+  border: 1px solid #cdbdb3;
+  color: #2f2825;
+  background: white;
+}
+
+.hero-card {
+  background: white;
+  border: 1px solid #e3d8d0;
+  border-radius: 32px;
+  padding: 34px;
+  box-shadow: 0 24px 60px rgba(47, 40, 37, 0.1);
+}
+
+.card-label {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #a98274;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.hero-card h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0 0 14px;
+}
+
+.hero-card p {
+  color: #6f625c;
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+
+.hero-card a {
+  color: #2f2825;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid #2f2825;
+}
+
+.highlights {
+  padding: 0 8% 72px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.highlights article {
+  background: white;
+  border: 1px solid #e3d8d0;
+  border-radius: 24px;
+  padding: 28px;
+}
+
+.highlights h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+
+.highlights p {
+  color: #6f625c;
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 950px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
