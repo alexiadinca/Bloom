@@ -7,7 +7,7 @@ import { AuthResponse, LoginRequest, RegisterRequest } from '../../shared/models
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiUrl = 'http://localhost:5037/api/auth';
+  private readonly apiUrl = 'https://localhost:5037/api/auth';
   private readonly tokenKey = 'bloom_token';
   private readonly userKey = 'bloom_user';
 

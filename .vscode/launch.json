@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Backend: Bloom API Swagger",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build backend",
+      "program": "${workspaceFolder}/backend/Bloom.Api/bin/Debug/net10.0/Bloom.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/Bloom.Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "Now listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger/"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "https://localhost:5037"
+      }
+    },
+    {
+      "name": "Frontend: Bloom Client",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/frontend/bloom-client/src",
+      "preLaunchTask": "serve frontend"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Bloom: Full Stack",
+      "configurations": [
+        "Backend: Bloom API Swagger",
+        "Frontend: Bloom Client"
+      ]
+    }
+  ]
+}

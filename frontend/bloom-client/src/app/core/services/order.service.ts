@@ -7,7 +7,7 @@ import { CheckoutRequest, OrderResponse } from '../../shared/models/checkout.mod
   providedIn: 'root'
 })
 export class OrderService {
-  private readonly apiUrl = 'http://localhost:5037/api/orders';
+  private readonly apiUrl = 'https://localhost:5037/api/orders';
 
   constructor(private http: HttpClient) {}
 
