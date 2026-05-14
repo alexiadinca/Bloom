@@ -144,15 +144,3 @@ VALUES
     19
 );
 GO
-
-USE BloomDb;
-GO
-
-DELETE FROM Products;
-GO
-
-DBCC CHECKIDENT ('Products', RESEED, 0);
-GO
-
-SELECT * FROM Products;
-GO
